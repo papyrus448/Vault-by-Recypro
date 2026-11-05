@@ -1,0 +1,79 @@
+{
+  "name": "vault-by-recypro",
+  "productName": "Vault by Recypro",
+  "version": "1.0.0",
+  "description": "Gestionnaire de mots de passe chiffré (AES-GCM) par Recypro",
+  "author": "Recypro",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack:win": "electron-builder --win --x64 --dir",
+    "patch:win": "node scripts/patch-exe.js",
+    "dist:win": "npm run pack:win && npm run patch:win && electron-builder --win portable --x64 --prepackaged dist/win-unpacked",
+    "dist:win:installer": "npm run pack:win && npm run patch:win && electron-builder --win nsis --x64 --prepackaged dist/win-unpacked",
+    "pack:linux": "electron-builder --linux --x64 --dir",
+    "dist:linux": "electron-builder --linux --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0",
+    "resedit": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.recypro.vault",
+    "productName": "Vault by Recypro",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "data/**/*",
+      "img/**/*",
+      "main.js"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "maintainer": "Recypro",
+      "synopsis": "Gestionnaire de mots de passe chiffré",
+      "description": "Gestionnaire de mots de passe local, chiffré en AES-GCM avec un mot de passe principal (PBKDF2).",
+      "artifactName": "Vault-by-Recypro-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Vault by Recypro",
+      "artifactName": "Vault-by-Recypro-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Vault-by-Recypro-${version}-portable.${ext}"
+    }
+  }
+}

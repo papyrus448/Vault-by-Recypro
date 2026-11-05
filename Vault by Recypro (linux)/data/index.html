@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <img class="logo" src="../img/logo.jpg" alt="Recypro" width="125" height="125">
+    <title>Vault by Recypro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Modal pour le mot de passe principal -->
+    <div id="master-password-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title">Définir un mot de passe principal</h2>
+            <p id="modal-text">C'est la première fois que vous utilisez l'application. Veuillez créer un mot de passe principal pour sécuriser vos données.</p>
+            <form id="master-password-form">
+                <input type="password" id="master-password-input" placeholder="Mot de passe principal" required>
+                <p id="master-password-error" class="error-message"></p>
+                <button type="submit" id="master-password-submit">Définir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour changer le mot de passe principal -->
+    <div id="change-password-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Changer le mot de passe principal</h2>
+            <form id="change-password-form">
+                <input type="password" id="old-master-password" placeholder="Ancien mot de passe principal" required>
+                <input type="password" id="new-master-password" placeholder="Nouveau mot de passe principal" required>
+                <input type="password" id="confirm-new-master-password" placeholder="Confirmer le nouveau mot de passe" required>
+                <p id="change-password-error" class="error-message"></p>
+                <div class="modal-buttons">
+                    <button type="submit">Confirmer</button>
+                    <button type="button" id="cancel-change-password">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier un mot de passe -->
+    <div id="edit-password-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Modifier le mot de passe</h2>
+            <form id="edit-password-form">
+                <input type="hidden" id="edit-password-index">
+                <input type="text" id="edit-site-input" placeholder="Site web / Service" required>
+                <input type="text" id="edit-username-input" placeholder="Nom d'utilisateur / Email" required>
+                <input type="text" id="edit-password-input" placeholder="Mot de passe" required>
+                <div class="modal-buttons">
+                    <button type="submit">Sauvegarder</button>
+                    <button type="button" id="cancel-edit-password">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="main-container" style="display: none;">
+        <h1>Vault by Recypro</h1>
+        <div class="settings-container">
+            <button id="export-passwords-btn">Exporter en .txt</button>
+            <button id="change-master-password-btn">Changer le mot de passe principal</button>
+        </div>
+        <div class="form-container">
+            <h2>Ajouter un nouveau mot de passe</h2>
+            <form id="password-form">
+                <input type="text" id="site-input" placeholder="Site web / Service" required>
+                <input type="text" id="username-input" placeholder="Nom d'utilisateur / Email" required>
+                
+                <div class="password-input-container">
+                    <input type="password" id="password-input" placeholder="Mot de passe" required>
+                    <button type="button" id="generate-password-btn">Générer</button>
+                    <button type="button" id="toggle-password-btn">Afficher</button>
+                </div>
+                <div id="password-strength-bar"></div>
+
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+        <div class="passwords-container">
+            <h2>Mots de passe enregistrés</h2>
+            <input type="text" id="search-input" placeholder="Rechercher par site ou utilisateur...">
+            <div id="passwords-list">
+                <!-- Les mots de passe seront injectés ici par JavaScript -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

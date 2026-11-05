@@ -1,0 +1,6 @@
+node_modules/
+dist/
+
+# Binaires de distribution (publies via GitHub Releases)
+*.AppImage
+*.tar.gz
