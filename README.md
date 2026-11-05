@@ -1,3 +1,5 @@
+![Vault by Recypro](docs/vault-by-recypro.png)
+
 # Vault by Recypro
 
 Gestionnaire de mots de passe chiffré (AES-256-GCM) par Recypro.
