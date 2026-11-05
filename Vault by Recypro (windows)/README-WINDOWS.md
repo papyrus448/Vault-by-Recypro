@@ -40,13 +40,25 @@ Pour tester l'application sur Linux : `npm start`.
 
 ## Créer un vrai installateur (Setup.exe)
 
-Le fichier portable suffit pour utiliser l'application. Un installateur classique (menu Démarrer, désinstallation, raccourci bureau) peut être généré avec :
+Deux méthodes sont disponibles.
+
+### Sans Wine (recommandé sous Linux)
+
+L'installateur NSIS est décrit dans `installer.nsi` et se compile avec le `makensis` fourni par electron-builder :
+
+```bash
+npm run dist:win:installer:linux
+```
+
+Cela produit `dist/Vault-by-Recypro-Setup-<version>.exe`. L'installateur installe l'application dans le profil utilisateur, crée les raccourcis Bureau et menu Démarrer, et ajoute un désinstalleur (données `%APPDATA%` conservées).
+
+### Avec electron-builder (nécessite Wine)
 
 ```bash
 npm run dist:win:installer
 ```
 
-⚠️ Cette étape utilise NSIS et nécessite **Wine** sur Linux (ou de lancer la commande sous Windows) :
+⚠️ Cette variante utilise NSIS via electron-builder et nécessite **Wine** sur Linux (ou de lancer la commande sous Windows) :
 
 ```bash
 sudo pacman -S wine        # Arch / Omarchy
